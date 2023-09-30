@@ -7,35 +7,19 @@ import streamlit.components.v1 as components
 # release process.)
 _RELEASE = True
 
-# Declare a Streamlit component. `declare_component` returns a function
-# that is used to create instances of the component. We're naming this
-# function "_component_func", with an underscore prefix, because we don't want
-# to expose it directly to users. Instead, we will create a custom wrapper
-# function, below, that will serve as our component's public API.
-
-# It's worth noting that this call to `declare_component` is the
-# *only thing* you need to do to create the binding between Streamlit and
-# your component frontend. Everything else we do in this file is simply a
-# best practice.
-
-if not _RELEASE:
-    _component_func = components.declare_component(
-        # We give the component a simple, descriptive name ("my_component"
-        # does not fit this bill, so please choose something better for your
-        # own component :)
+if _RELEASE:
+    # parent_dir = os.path.dirname(os.path.abspath(__file__))
+    # build_dir = os.path.join(parent_dir, "frontend/build")
+    root_dir = os.path.dirname(__file__)
+    build_dir = os.path.join(root_dir,'frontend/build')
+    _component_func = components.declare_component("pnz_auth", path='C:/Users/mahno/OneDrive/Desktop/pnz-assistant/pnz_auth/frontend/build')
+    
+else:
+        _component_func = components.declare_component(
         "pnz_auth",
-        # Pass `url` here to tell Streamlit that the component will be served
-        # by the local dev server that you run via `npm run start`.
-        # (This is useful while your component is in development.)
         url="http://localhost:3000",
     )
-else:
-    # When we're distributing a production version of the component, we'll
-    # replace the `url` param with `path`, and point it to the component's
-    # build directory:
-    parent_dir = os.path.dirname(os.path.abspath(__file__))
-    build_dir = os.path.join(parent_dir, "frontend/build")
-    _component_func = components.declare_component("pnz_auth", path=build_dir)
+
 
 
 # Create a wrapper function for the component. This is an optional
