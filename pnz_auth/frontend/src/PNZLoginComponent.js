@@ -32,29 +32,28 @@ class MyComponent extends StreamlitComponentBase {
         } catch (error) {
           this.onFailure();
         }
-      };
+    };
     
-      onSuccess = async (data) => {
+    onSuccess = async (data) => {
         if (!data.code) {
           return this.onFailure(new Error("'code' not found"));
         }
         try {
           const accessToken = await authAPI.accesstoken(data.code);
-          Streamlit.setComponentValue(accessToken.data.accessTokenObject)
-        //   localStorageService.setAccessToken(accessToken.data.accessTokenObject);
+          Streamlit.setComponentValue(accessToken.data.accessTokenObject)        
         } catch (error) {
           this.onFailure(error);
         }
-      };
+    };
     
-      onFailure = (error) => {
-        console.log(error);
-      };
+    onFailure = (error) => {
+      console.log(error);
+    };
     
-      render() {
-        const attrs = { onClick: this.onBtnClick };
-        return <LoginButton at={attrs} />;
-      }  
+    render() {
+      const attrs = { onClick: this.onBtnClick };
+      return <LoginButton at={attrs} />;
+    }  
 }
  
 

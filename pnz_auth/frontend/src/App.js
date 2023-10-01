@@ -3,7 +3,7 @@ import PNZLoginComponent from "./PNZLoginComponent";
 
 const App = () => {
   return (
-      < PNZLoginComponent/>
+    <PNZLoginComponent/>
   );
 };
 

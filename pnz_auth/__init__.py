@@ -7,19 +7,15 @@ import streamlit.components.v1 as components
 # release process.)
 _RELEASE = True
 
-if _RELEASE:
-    # parent_dir = os.path.dirname(os.path.abspath(__file__))
-    # build_dir = os.path.join(parent_dir, "frontend/build")
-    root_dir = os.path.dirname(__file__)
-    build_dir = os.path.join(root_dir,'frontend/build')
-    _component_func = components.declare_component("pnz_auth", path='C:/Users/mahno/OneDrive/Desktop/pnz-assistant/pnz_auth/frontend/build')
-    
-else:
-        _component_func = components.declare_component(
+if not _RELEASE:
+    _component_func = components.declare_component(
         "pnz_auth",
         url="http://localhost:3000",
     )
-
+else:
+    parent_dir = os.path.dirname(os.path.abspath(__file__))
+    build_dir = os.path.join(parent_dir, "frontend/build")
+    _component_func = components.declare_component("pnz_auth", path=build_dir)
 
 
 # Create a wrapper function for the component. This is an optional

@@ -132,7 +132,7 @@ if st.button('Get transactions',"getTransactions"):
     
 def csv_analyzer_app(user_input):
 
-    df = pd.read_csv("merged_data.csv")
+    df = pd.read_csv("bank.csv")
     response = customAgent(user_input)
     print(response,"response")
     code_to_execute = extract_code_from_response(response)

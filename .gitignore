@@ -1,7 +1,6 @@
 __pycache__
 .venv
 modules
-utils
 classes.py
 custom_agent-without-mem.py
 CustomGraphTool.py
