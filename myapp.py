@@ -1,5 +1,5 @@
 import streamlit as st
-st.set_page_config(page_title="PNZ", layout="wide")
+st.set_page_config(page_title="Payments NZ", layout="wide",page_icon="https://www.apicentre.paymentsnz.co.nz/static/apicentre-favicon.ico")
 
 import matplotlib.pyplot as plt
 from io import BytesIO
