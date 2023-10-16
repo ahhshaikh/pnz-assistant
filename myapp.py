@@ -12,6 +12,7 @@ from utils import extract_code_from_response
 from custom_agent import customAgent
 from pnz_auth import my_component
 from utils import check_token
+from PIL import Image
 
 st.title("Talk to your bank account")
 
@@ -33,11 +34,15 @@ base_url = 'https://pnz-ai-assistant.azurewebsites.net/'
 
 with st.sidebar:
 
-    st.sidebar.markdown("""
-    <div >
-        <h3 style="color: white;font-family: monospace; font-size: 1.75rem">payments<span style="color: #F8882B;font-family: monospace;font-size: 1.75rem">nz<span/></h3>
-    </div>
-    """, unsafe_allow_html=True)
+    # st.sidebar.markdown("""
+    # <div >
+    #     <h3 style="color: white;font-family: monospace; font-size: 1.75rem">payments<span style="color: #F8882B;font-family: monospace;font-size: 1.75rem">nz<span/></h3>
+    # </div>
+    # """, unsafe_allow_html=True)
+
+    logo_image = Image.open('paymentsNZ_logo.png')
+
+    st.image(logo_image)
 
     auth_token_object = my_component()
 
@@ -57,7 +62,7 @@ with st.sidebar:
         }
         </style>""", unsafe_allow_html=True)
 
-    if st.button(":white[Get accounts and transactions data ]", type="secondary"):
+    if st.button(":white[Get accounts and transactions data]", type="secondary"):
         if (check_token(st.session_state.token)):
                 accesstoken = st.session_state.token.get('value')
                 data = {'access_token': accesstoken}

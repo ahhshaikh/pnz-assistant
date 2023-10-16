@@ -7,15 +7,15 @@ import streamlit.components.v1 as components
 # release process.)
 _RELEASE = True
 
-if not _RELEASE:
-    _component_func = components.declare_component(
-        "pnz_auth",
-        url="http://localhost:3000",
-    )
-else:
+if _RELEASE:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
     build_dir = os.path.join(parent_dir, "frontend/build")
     _component_func = components.declare_component("pnz_auth", path=build_dir)
+else:
+     _component_func = components.declare_component(
+        "pnz_auth",
+        url="http://localhost:3000",
+    )
 
 
 # Create a wrapper function for the component. This is an optional
@@ -26,5 +26,4 @@ else:
 def my_component( key=None):
     
     component_value = _component_func( key=key,default={"tokenType":None,"expiresIn":None,"refreshToken":None,"accessToken":None})
-
     return component_value
