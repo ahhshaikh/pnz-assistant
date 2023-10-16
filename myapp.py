@@ -13,7 +13,7 @@ from custom_agent import customAgent
 from pnz_auth import my_component
 from utils import check_token
 
-st.title("Talk to your financial data")
+st.title("Talk to your bank account")
 
 messageboard = st.empty()
 # --------------------------------------------------------------------------------
