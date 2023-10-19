@@ -17,13 +17,13 @@ from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 
 os.environ["OPENAI_API_KEY"] == st.secrets["OPENAI_API_KEY"]
 
-pd.set_option('display.max_rows', 20)
-pd.set_option('display.max_columns', 20)
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
 
 memory_key = "chat_history"
 memory = ConversationBufferWindowMemory(k=4,memory_key=memory_key,return_messages=True) 
 # ConversationBufferMemory(memory_key=memory_key, return_messages=True)
-llm = ChatOpenAI(temperature=0,model='gpt-4-0613',max_tokens=500)
+llm = ChatOpenAI(temperature=0,model='gpt-4-0613')
 # embeddings = OpenAIEmbeddings()
 # loader = CSVLoader(file_path="merged_data.csv")
 # documents = loader.load()
@@ -93,7 +93,6 @@ def customAgent(user_query):
                             # args_schema=PythonInputs)
 
     tools = [repl]
-    # tools = [retriever_tool,repl]
 
     agent = OpenAIFunctionsAgent(llm=llm, prompt=prompt, tools=tools)
     agent_executor = AgentExecutor.from_agent_and_tools(agent=agent, tools=tools, max_iterations=4, early_stopping_method="generate",memory=memory,verbose=True)
